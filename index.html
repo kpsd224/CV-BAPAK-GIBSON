@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>CV - Dr. Gibson Sihombing, S.E., M.M.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #f5f7fa;
+            --color-bg-deep: #eaf0f8;
+            --color-surface: #ffffff;
+            --color-text: #1a2844;
+            --color-text-secondary: #2d4270;
+            --color-text-muted: #6b7fa3;
+            --color-accent-1: #1d3a8a;
+            --color-accent-2: #e63b2e;
+            --color-accent-3: #3b6dd4;
+            --color-glass-bg: rgba(255,255,255,0.88);
+            --color-glass-border: rgba(29,58,138,0.10);
+            --color-vignette: rgba(0,0,0,0.04);
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
+        }
+    </style>
+    <style>
+        :root { --color-bg: #f5f7fa; --color-text: #1a2844; --glow-color-rgb: 29,58,138; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f5f7fa; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.97); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1060px; padding: clamp(1rem, 2.5vw, 2.5rem); }
+        .nav-controls { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); padding: 7px 18px; border-radius: 40px; border: 1px solid rgba(29,58,138,0.12); box-shadow: 0 2px 14px rgba(29,58,138,0.08); }
+        .nav-btn { width: 34px; height: 34px; border: none; background: rgba(29,58,138,0.08); color: #1d3a8a; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-btn:hover { background: rgba(29,58,138,0.18); }
+        .slide-dots { display: flex; gap: 7px; }
+        .slide-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(29,58,138,0.18); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .slide-dots .dot.active { background: #1d3a8a; transform: scale(1.3); }
+        .slide-counter { font-size: 0.75rem; color: #6b7fa3; min-width: 34px; text-align: center; }
+        .reveal { opacity: 0; transform: translateY(14px); }
+        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float-slow 12s ease-in-out infinite; }
+        .blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
+        .blob:nth-child(3) { animation: float-slow 20s ease-in-out infinite reverse; }
+        @keyframes float-slow { 0%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.08);}100%{transform:translate(0,0) scale(1);} }
+        @keyframes float-drift { 0%{transform:translate(0,0);}50%{transform:translate(-30px,40px);}100%{transform:translate(0,0);} }
+        @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+        .slide::after { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.04) 100%); }
+        .mouse-spotlight { position:fixed;inset:0;z-index:99;pointer-events:none; }
+        /* Cover */
+        .cover-header { background: linear-gradient(135deg, #1d3a8a 0%, #16306e 60%, #0f2254 100%); padding: 26px 36px 20px; display: flex; align-items: center; gap: 26px; }
+        .cover-photo-circle { width: 110px; height: 110px; border-radius: 50%; background: linear-gradient(135deg, #3b6dd4, #1d3a8a); border: 4px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; flex-shrink: 0; }
+        .section-bar { background: linear-gradient(90deg, #1d3a8a 0%, #3b6dd4 100%); color: white; padding: 9px 18px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; margin-bottom: 14px; }
+        .activity-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; border-left: 4px solid #1d3a8a; background: #f0f4fc; border-radius: 0 8px 8px 0; margin-bottom: 8px; }
+        .year-tag { background: #e8eef8; color: #1d3a8a; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; border-radius: 3px; white-space: nowrap; }
+        .info-card { background: white; border: 1px solid rgba(29,58,138,0.10); border-radius: 10px; padding: 12px 16px; box-shadow: 0 2px 10px rgba(29,58,138,0.05); }
+        .info-row { display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid #f0f4fc; font-size: 0.8rem; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #6b7fa3; width: 110px; flex-shrink: 0; }
+        .info-value { color: #1a2844; font-weight: 500; }
+        .contact-chip { display:flex; align-items:center; gap:8px; background:white; border:1px solid rgba(29,58,138,0.12); border-radius:20px; padding:5px 14px; font-size:0.78rem; color:#1d3a8a; font-weight:500; }
+        .org-card { background: white; border-radius: 10px; padding: 12px 16px; border-left: 5px solid #1d3a8a; box-shadow: 0 2px 10px rgba(29,58,138,0.06); margin-bottom: 8px; }
+        .org-title-bar { background: #f0f4fc; border-radius: 6px; padding: 7px 12px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .cv-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+        .cv-table th { background: #1d3a8a; color: white; padding: 7px 10px; text-align: left; font-weight: 600; }
+        .cv-table td { padding: 6px 10px; border-bottom: 1px solid #e8eef8; color: #2d4270; vertical-align: top; }
+        .cv-table tr:nth-child(even) td { background: #f8faff; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    </style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide slide-1 active" data-slide="1">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:500px;height:500px;top:-150px;right:-100px;background:#1d3a8a;opacity:0.07;"></div>
+            <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:#e63b2e;opacity:0.05;"></div>
+            <div class="blob" style="width:200px;height:200px;top:50%;left:10%;background:#3b6dd4;opacity:0.06;"></div>
+        </div>
+        <div class="content" style="padding:0;max-width:880px;">
+            <div class="cover-header reveal" style="border-radius:14px 14px 0 0;">
+                <div class="cover-photo-circle">👤</div>
+                <div style="flex:1;">
+                    <div style="font-size:0.66rem;color:rgba(255,255,255,0.65);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">DAFTAR RIWAYAT HIDUP</div>
+                    <div style="font-family:'DM Serif Display',serif;font-size:2rem;font-weight:700;color:white;line-height:1.15;">Dr. Gibson Sihombing, S.E., M.M.</div>
+                    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+                        <span style="background:rgba(255,255,255,0.14);color:white;padding:3px 12px;border-radius:4px;font-size:0.72rem;font-weight:600;border:1px solid rgba(255,255,255,0.22);">NIP/NIK: 3275120601680003</span>
+                        <span style="background:rgba(255,255,255,0.14);color:white;padding:3px 12px;border-radius:4px;font-size:0.72rem;font-weight:600;border:1px solid rgba(255,255,255,0.22);">NIDN: 0306016801</span>
+                    </div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;">
+                    <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 16px;">
+                        <div style="color:rgba(255,255,255,0.65);font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;">Email</div>
+                        <div style="color:white;font-size:0.75rem;font-weight:500;">gbsnab@hotmail.com</div>
+                        <div style="color:rgba(255,255,255,0.65);font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:7px;margin-bottom:3px;">Telepon</div>
+                        <div style="color:white;font-size:0.75rem;font-weight:500;">0813 8422 0451</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal" style="background:white;padding:14px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;border-left:1px solid #e8eef8;border-right:1px solid #e8eef8;">
+                <div style="text-align:center;padding:7px;">
+                    <div style="font-size:0.62rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Tempat, Tgl Lahir</div>
+                    <div style="font-size:0.8rem;font-weight:600;color:#1a2844;">Sumut, 06 Jan 1968</div>
+                </div>
+                <div style="text-align:center;padding:7px;border-left:1px solid #e8eef8;">
+                    <div style="font-size:0.62rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Jenis Kelamin</div>
+                    <div style="font-size:0.8rem;font-weight:600;color:#1a2844;">Laki-laki</div>
+                </div>
+                <div style="text-align:center;padding:7px;border-left:1px solid #e8eef8;">
+                    <div style="font-size:0.62rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Status Perkawinan</div>
+                    <div style="font-size:0.8rem;font-weight:600;color:#1a2844;">Menikah</div>
+                </div>
+                <div style="text-align:center;padding:7px;border-left:1px solid #e8eef8;">
+                    <div style="font-size:0.62rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Agama</div>
+                    <div style="font-size:0.8rem;font-weight:600;color:#1a2844;">Kristen</div>
+                </div>
+            </div>
+            <div class="reveal" style="background:#e63b2e;padding:9px 28px;border-radius:0 0 14px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                <span style="font-size:0.68rem;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:2px;">Bidang Keahlian:</span>
+                <span style="background:rgba(255,255,255,0.2);color:white;padding:3px 12px;border-radius:4px;font-size:0.75rem;font-weight:700;">Manajemen &amp; Ekonomi</span>
+                <span style="background:rgba(255,255,255,0.2);color:white;padding:3px 12px;border-radius:4px;font-size:0.75rem;font-weight:700;">Kewirausahaan</span>
+                <span style="background:rgba(255,255,255,0.2);color:white;padding:3px 12px;border-radius:4px;font-size:0.75rem;font-weight:700;">Doktor Ilmu Manajemen</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: PENDIDIKAN FORMAL -->
+    <div class="slide slide-2" data-slide="2">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:350px;height:350px;top:-80px;right:-80px;background:#1d3a8a;opacity:0.05;"></div>
+            <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#3b6dd4;opacity:0.04;"></div>
+        </div>
+        <div class="content">
+            <div class="section-bar reveal">📚 Riwayat Pendidikan Perguruan Tinggi</div>
+            <div class="two-col">
+                <div>
+                    <div class="org-card reveal">
+                        <div class="org-title-bar">
+                            <span style="font-weight:700;color:#1d3a8a;font-size:0.85rem;">Sarjana Ekonomi (S.E.)</span>
+                            <span class="year-tag">Lulus 1998</span>
+                        </div>
+                        <div style="font-size:0.76rem;color:#2d4270;">Program Studi Manajemen / Ekonomi</div>
+                    </div>
+                    <div class="org-card reveal" style="border-left-color:#e63b2e;">
+                        <div class="org-title-bar">
+                            <span style="font-weight:700;color:#e63b2e;font-size:0.85rem;">Magister Manajemen (M.M.)</span>
+                            <span class="year-tag">Lulus 2004</span>
+                        </div>
+                        <div style="font-size:0.76rem;color:#2d4270;">Program Pasca Sarjana Manajemen</div>
+                    </div>
+                    <div class="org-card reveal" style="border-left-color:#3b6dd4;">
+                        <div class="org-title-bar">
+                            <span style="font-weight:700;color:#3b6dd4;font-size:0.85rem;">Doktor Ilmu Manajemen (Dr.)</span>
+                            <span class="year-tag">Lulus 2015</span>
+                        </div>
+                        <div style="font-size:0.76rem;color:#2d4270;">Program Doktoral</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-bar reveal" style="font-size:0.82rem;">🎓 Pengalaman Mengajar</div>
+                    <div class="info-card reveal">
+                        <div style="font-size:0.78rem;font-weight:700;color:#1d3a8a;margin-bottom:7px;">Mata Kuliah Yang Diampu:</div>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Ekonomi Manajerial</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Employee &amp; Industrial Relations</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Studi Kasus Pemasaran Strategik</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Kewirausahaan</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Pengantar Ilmu Ekonomi</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Manajemen Keuangan I &amp; II</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Akuntansi I, Biaya &amp; Manajemen</span>
+                            <span style="background:#f0f4fc;color:#1d3a8a;padding:3px 9px;border-radius:4px;font-size:0.7rem;font-weight:600;">Pasar Modal</span>
+                        </div>
+                    </div>
+                    <div class="info-card reveal" style="margin-top:9px;border-left:4px solid #e63b2e;border-radius:0 8px 8px 0;">
+                        <div style="font-size:0.72rem;color:#6b7fa3;margin-bottom:2px;">Mengajar di berbagai Perguruan Tinggi</div>
+                        <div style="font-size:0.8rem;font-weight:600;color:#1a2844;">Program S1, S2, S3 — Ekonomi &amp; Manajemen</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: PENGALAMAN KERJA & PELATIHAN -->
+    <div class="slide slide-3" data-slide="3">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:400px;height:400px;top:-100px;right:-100px;background:#1d3a8a;opacity:0.05;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#e63b2e;opacity:0.04;"></div>
+        </div>
+        <div class="content">
+            <div class="section-bar reveal">💼 Pengalaman Kerja</div>
+            <div class="two-col" style="gap:14px;">
+                <div>
+                    <div class="activity-row reveal">
+                        <div><div style="font-weight:700;font-size:0.8rem;color:#1d3a8a;margin-bottom:3px;">Pengalaman Kerja No. 1</div><div style="font-size:0.72rem;color:#6b7fa3;">Bidang Manajemen &amp; Ekonomi</div></div>
+                    </div>
+                    <div class="activity-row reveal" style="border-left-color:#e63b2e;">
+                        <div><div style="font-weight:700;font-size:0.8rem;color:#e63b2e;margin-bottom:3px;">Pengalaman Kerja No. 2</div><div style="font-size:0.72rem;color:#6b7fa3;">Bidang Pengajaran &amp; Akademik</div></div>
+                    </div>
+                    <div class="activity-row reveal" style="border-left-color:#3b6dd4;">
+                        <div><div style="font-weight:700;font-size:0.8rem;color:#3b6dd4;margin-bottom:3px;">Pengalaman Kerja No. 3</div><div style="font-size:0.72rem;color:#6b7fa3;">Bidang Penelitian</div></div>
+                    </div>
+                    <div class="activity-row reveal">
+                        <div><div style="font-weight:700;font-size:0.8rem;color:#1d3a8a;margin-bottom:3px;">Pengalaman Kerja No. 4 – 9</div><div style="font-size:0.72rem;color:#6b7fa3;">Total 9 pengalaman kerja di berbagai bidang terkait</div></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-bar reveal" style="font-size:0.82rem;">🏆 Pelatihan Profesional / Keahlian</div>
+                    <div class="info-card reveal">
+                        <div style="font-size:0.73rem;color:#6b7fa3;margin-bottom:7px;font-weight:600;">Total: 30+ Pelatihan Profesional (1990 – 2015)</div>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">1990</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">1998</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2000 (×10)</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2001</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2004 (×4)</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2005 (×4)</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2006 (×3)</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2007</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2012</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2013</span>
+                            <span style="background:#fff3f3;color:#e63b2e;padding:3px 8px;border-radius:3px;font-size:0.68rem;font-weight:600;border:1px solid #fdd;">2015</span>
+                        </div>
+                        <div style="margin-top:7px;font-size:0.7rem;color:#6b7fa3;border-top:1px solid #e8eef8;padding-top:5px;">Di bidang manajemen, ekonomi, kewirausahaan, dan kepemimpinan.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: ORGANISASI PROFESI -->
+    <div class="slide slide-4" data-slide="4">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:400px;height:400px;top:-100px;right:-80px;background:#1d3a8a;opacity:0.05;"></div>
+            <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:#3b6dd4;opacity:0.04;"></div>
+        </div>
+        <div class="content">
+            <div class="section-bar reveal">🏛️ Organisasi Profesi / Ilmiah</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div>
+                    <div class="org-card reveal"><div class="org-title-bar"><span style="font-weight:700;color:#1d3a8a;font-size:0.8rem;">Organisasi Profesi</span><span class="year-tag">2025–2030</span></div><div style="font-size:0.72rem;color:#2d4270;">Jabatan / Peran Aktif</div></div>
+                    <div class="org-card reveal" style="border-left-color:#3b6dd4;"><div class="org-title-bar"><span style="font-weight:700;color:#3b6dd4;font-size:0.8rem;">Asosiasi Ilmiah</span><span class="year-tag">2025–2029</span></div><div style="font-size:0.72rem;color:#2d4270;">Anggota Aktif</div></div>
+                    <div class="org-card reveal" style="border-left-color:#e63b2e;"><div class="org-title-bar"><span style="font-weight:700;color:#e63b2e;font-size:0.8rem;">Lembaga Akademik</span><span class="year-tag">2021–2025</span></div><div style="font-size:0.72rem;color:#2d4270;">Posisi Kepemimpinan</div></div>
+                    <div class="org-card reveal"><div class="org-title-bar"><span style="font-weight:700;color:#1d3a8a;font-size:0.8rem;">Organisasi Profesi</span><span class="year-tag">2021–2024</span></div><div style="font-size:0.72rem;color:#2d4270;">Anggota / Pengurus</div></div>
+                    <div class="org-card reveal" style="border-left-color:#3b6dd4;"><div class="org-title-bar"><span style="font-weight:700;color:#3b6dd4;font-size:0.8rem;">Asosiasi Manajemen</span><span class="year-tag">2016–2020</span></div><div style="font-size:0.72rem;color:#2d4270;">Anggota Aktif</div></div>
+                </div>
+                <div>
+                    <div class="org-card reveal" style="border-left-color:#e63b2e;"><div class="org-title-bar"><span style="font-weight:700;color:#e63b2e;font-size:0.8rem;">Organisasi Ilmiah</span><span class="year-tag">2012–2014</span></div><div style="font-size:0.72rem;color:#2d4270;">Pengurus Aktif</div></div>
+                    <div class="org-card reveal"><div class="org-title-bar"><span style="font-weight:700;color:#1d3a8a;font-size:0.8rem;">Lembaga Penelitian</span><span class="year-tag">2011–2016</span></div><div style="font-size:0.72rem;color:#2d4270;">Anggota / Peneliti</div></div>
+                    <div class="org-card reveal" style="border-left-color:#3b6dd4;"><div class="org-title-bar"><span style="font-weight:700;color:#3b6dd4;font-size:0.8rem;">Asosiasi Ekonomi</span><span class="year-tag">2008–2012</span></div><div style="font-size:0.72rem;color:#2d4270;">Anggota Aktif</div></div>
+                    <div class="org-card reveal" style="border-left-color:#e63b2e;"><div class="org-title-bar"><span style="font-weight:700;color:#e63b2e;font-size:0.8rem;">Berbagai Organisasi</span><span class="year-tag">2000–2008</span></div><div style="font-size:0.72rem;color:#2d4270;">Berbagai jabatan (asosiasi profesi &amp; ilmiah)</div></div>
+                    <div class="org-card reveal" style="background:#f0f4fc;border-left-color:#1d3a8a;">
+                        <div style="font-size:0.72rem;color:#1d3a8a;font-weight:700;">Total: 18+ Organisasi</div>
+                        <div style="font-size:0.7rem;color:#6b7fa3;margin-top:2px;">Aktif 2000 – 2030 di berbagai asosiasi profesi, ilmiah, dan lembaga akademik.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: KARYA ILMIAH & KONFERENSI -->
+    <div class="slide slide-5" data-slide="5">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:350px;height:350px;top:-80px;right:-80px;background:#1d3a8a;opacity:0.05;"></div>
+            <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#e63b2e;opacity:0.04;"></div>
+        </div>
+        <div class="content">
+            <div class="two-col">
+                <div>
+                    <div class="section-bar reveal">📖 Karya Ilmiah</div>
+                    <div class="info-card reveal">
+                        <div style="font-size:0.76rem;font-weight:700;color:#1d3a8a;margin-bottom:5px;">A. Buku / Bab Buku / Jurnal</div>
+                        <div class="activity-row" style="border-left-color:#1d3a8a;padding:7px 11px;margin-bottom:5px;">
+                            <div><div style="font-size:0.76rem;font-weight:600;color:#1d3a8a;">Publikasi Jurnal / Buku</div><div style="font-size:0.7rem;color:#6b7fa3;">Tahun 2010 — Bidang Manajemen &amp; Ekonomi</div></div>
+                        </div>
+                    </div>
+                    <div class="info-card reveal" style="margin-top:9px;">
+                        <div style="font-size:0.76rem;font-weight:700;color:#e63b2e;margin-bottom:5px;">B. Makalah / Poster</div>
+                        <table class="cv-table">
+                            <thead><tr><th>Tahun</th><th>Keterangan</th></tr></thead>
+                            <tbody>
+                                <tr><td>2009</td><td>Makalah Ilmiah</td></tr>
+                                <tr><td>2008</td><td>Makalah Ilmiah (×2)</td></tr>
+                                <tr><td>2002</td><td>Makalah Ilmiah</td></tr>
+                                <tr><td>1998</td><td>Makalah Ilmiah</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="section-bar reveal" style="margin-top:12px;font-size:0.82rem;">🎖️ Penghargaan / Piagam</div>
+                    <div class="info-card reveal">
+                        <div class="info-row"><span class="info-label">2024</span><span class="info-value">Penghargaan Bidang Akademik / Profesi</span></div>
+                    </div>
+                    <div class="section-bar reveal" style="margin-top:12px;font-size:0.82rem;">🤝 Pengabdian Masyarakat</div>
+                    <div class="info-card reveal">
+                        <div class="info-row"><span class="info-label">2018–2029</span><span class="info-value">Kegiatan Pengabdian Masyarakat</span></div>
+                        <div class="info-row"><span class="info-label">2025–2030</span><span class="info-value">Kegiatan Profesional Aktif</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-bar reveal">🌐 Konferensi / Seminar / Lokakarya</div>
+                    <div class="info-card reveal" style="max-height:320px;overflow-y:auto;">
+                        <table class="cv-table">
+                            <thead><tr><th>Tahun</th><th>Kegiatan</th></tr></thead>
+                            <tbody>
+                                <tr><td>2014 (×3)</td><td>Konferensi / Seminar Internasional &amp; Nasional</td></tr>
+                                <tr><td>2013</td><td>Seminar Nasional</td></tr>
+                                <tr><td>2012 (×6)</td><td>Konferensi &amp; Lokakarya</td></tr>
+                                <tr><td>2011 (×2)</td><td>Seminar Ilmiah</td></tr>
+                                <tr><td>2010 (×4)</td><td>Konferensi Nasional</td></tr>
+                                <tr><td>2009</td><td>Seminar</td></tr>
+                                <tr><td>2008 (×4)</td><td>Konferensi &amp; Seminar</td></tr>
+                                <tr><td>2007 (×2)</td><td>Lokakarya</td></tr>
+                                <tr><td>2005–2010</td><td>Kegiatan Ilmiah Rutin</td></tr>
+                                <tr><td>2005</td><td>Seminar Nasional</td></tr>
+                                <tr><td>2004–2010</td><td>Simposium</td></tr>
+                                <tr><td>2003–2007</td><td>Lokakarya</td></tr>
+                                <tr><td>2002–2014</td><td>Forum Ilmiah</td></tr>
+                                <tr><td>2001–2019</td><td>Asosiasi Akademik Rutin</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: PENUTUP -->
+    <div class="slide slide-6" data-slide="6">
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="gradient-mesh">
+            <div class="blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#1d3a8a;opacity:0.08;"></div>
+            <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:#e63b2e;opacity:0.06;"></div>
+            <div class="blob" style="width:200px;height:200px;top:40%;left:15%;background:#3b6dd4;opacity:0.05;"></div>
+        </div>
+        <div class="content" style="text-align:center;">
+            <div style="font-size:5rem;margin-bottom:14px;animation:float 3s ease-in-out infinite;" class="reveal">🎓</div>
+            <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;color:#1d3a8a;margin-bottom:6px;" class="reveal">Dr. Gibson Sihombing, S.E., M.M.</h1>
+            <p style="font-size:0.82rem;color:#6b7fa3;letter-spacing:4px;text-transform:uppercase;margin-bottom:24px;" class="reveal">Daftar Riwayat Hidup</p>
+            <div class="reveal" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+                <div class="contact-chip">📧 gbsnab@hotmail.com</div>
+                <div class="contact-chip">📱 0813 8422 0451</div>
+                <div class="contact-chip">🆔 NIDN: 0306016801</div>
+            </div>
+            <div class="reveal" style="background:white;border:1px solid rgba(29,58,138,0.1);border-radius:12px;padding:14px 24px;display:inline-block;text-align:left;box-shadow:0 4px 20px rgba(29,58,138,0.08);">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:center;">
+                    <div><div style="font-size:1.5rem;font-weight:700;color:#1d3a8a;" data-count="30">0</div><div style="font-size:0.65rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;">Pelatihan</div></div>
+                    <div style="border-left:1px solid #e8eef8;"><div style="font-size:1.5rem;font-weight:700;color:#e63b2e;" data-count="18">0</div><div style="font-size:0.65rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;">Organisasi</div></div>
+                    <div style="border-left:1px solid #e8eef8;"><div style="font-size:1.5rem;font-weight:700;color:#3b6dd4;" data-count="20">0</div><div style="font-size:0.65rem;color:#6b7fa3;text-transform:uppercase;letter-spacing:1px;">Konferensi+</div></div>
+                </div>
+            </div>
+            <div class="reveal" style="margin-top:14px;font-size:0.7rem;color:#6b7fa3;">
+                Pematangsiantar, 05 Maret 2026 &mdash; <em>Yang Menyatakan: Dr. Gibson Sihombing, S.E., M.M.</em>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="nav-controls">
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 6</span>
+</div>
+
+<script>
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) { const dot = document.createElement('div'); dot.className = 'dot'+(i===1?' active':''); dot.onclick = () => goToSlide(i); dotsContainer.appendChild(dot); }
+    function goToSlide(n) {
+        const prev = document.querySelector('.slide.active');
+        const next = document.querySelector('.slide[data-slide="'+n+'"]');
+        if(prev) prev.classList.remove('active');
+        if(next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let n=current+dir; if(n<1)n=total; if(n>total)n=1; goToSlide(n); }
+    function updateNav() { document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i+1===current)); counter.textContent=current+' / '+total; }
+    document.addEventListener('keydown', e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
+    let tx=0; document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;}); document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)changeSlide(d>0?1:-1);});
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el,i)=>{
+            el.style.transition='none'; el.style.opacity='0'; el.style.transform='translateY(14px)';
+            el.offsetHeight;
+            const delay=i*0.07;
+            el.style.transition=`opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+            el.style.opacity='1'; el.style.transform='translateY(0)';
+        });
+        animateSlideEffects(slide);
+    }
+    function animateSlideEffects(slide) {
+        slide.querySelectorAll('[data-count]:not(.counted)').forEach(el=>{
+            el.classList.add('counted');
+            const target=parseInt(el.dataset.count);
+            let cur=0; const step=target/40;
+            const timer=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(timer);}el.textContent=Math.round(cur)+'+';},30);
+        });
+    }
+    document.addEventListener('mousemove',e=>{
+        const s=document.querySelector('.mouse-spotlight');
+        if(s) s.style.background=`radial-gradient(500px circle at ${e.clientX}px ${e.clientY}px, rgba(29,58,138,0.04), transparent 40%)`;
+    });
+    window.initParticles = function(canvas,opts){
+        if(!canvas)return;
+        const ctx=canvas.getContext('2d');
+        canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;
+        const count=opts.count||30;
+        const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:Math.random()*1.5+0.5,alpha:Math.random()*0.2+0.05}));
+        (function animate(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(29,58,138,${p.alpha})`;ctx.fill();});
+            requestAnimationFrame(animate);
+        })();
+    };
+    document.querySelectorAll('.particle-canvas').forEach(c=>initParticles(c,{count:30}));
+    try { animateSlide(document.querySelector('.slide.active')); } catch(e){}
+</script>
+</body>
+</html>
