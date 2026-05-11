@@ -225,6 +225,170 @@
             body.browser-fullscreen .slide-4 .closing-photo { width: 108px !important; height: 108px !important; }
         }
     </style>
+
+    <style id="mobile-responsive-v15">
+        /* V15: mode tampilan HP / portrait.
+           Slide tetap bisa swipe, konten tidak terpotong, dan bisa discroll di layar kecil. */
+        @media (max-width: 768px) {
+            html, body, .deck {
+                width: 100vw !important;
+                height: 100dvh !important;
+                overflow: hidden !important;
+            }
+            body {
+                -webkit-text-size-adjust: 100%;
+                touch-action: pan-y;
+            }
+            .slide {
+                align-items: stretch !important;
+                justify-content: flex-start !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding: 10px 10px 86px !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            .slide > .content,
+            body.fullscreen-active .slide > .content,
+            body.browser-fullscreen .slide > .content {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+                transform: none !important;
+            }
+            .slide.fit-applied > .content { transform: none !important; }
+            .cover-header {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 12px !important;
+                padding: 20px 16px 16px !important;
+                border-radius: 14px 14px 0 0 !important;
+            }
+            .cover-photo-circle {
+                width: 96px !important;
+                height: 96px !important;
+            }
+            .cover-header > div[style*="flex:1"] { width: 100% !important; }
+            .cover-header div[style*="font-size:2rem"] {
+                font-size: clamp(1.45rem, 7vw, 2rem) !important;
+                line-height: 1.1 !important;
+            }
+            .cover-header > div[style*="text-align:right"] {
+                width: 100% !important;
+                text-align: center !important;
+            }
+            .cover-header > div[style*="text-align:right"] > div {
+                width: 100% !important;
+                padding: 9px 12px !important;
+            }
+            .slide-1 .reveal[style*="grid-template-columns:repeat(4,1fr)"] {
+                grid-template-columns: 1fr 1fr !important;
+                padding: 12px 14px !important;
+                gap: 8px !important;
+            }
+            .slide-1 .reveal[style*="grid-template-columns:repeat(4,1fr)"] > div {
+                border-left: none !important;
+                border-top: 1px solid #e8eef8 !important;
+            }
+            .slide-1 .reveal[style*="grid-template-columns:1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                padding: 12px 14px !important;
+            }
+            .slide-1 .reveal[style*="background:#e63b2e"] {
+                padding: 11px 14px !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+            .two-col,
+            .slide-3 .two-col,
+            div[style*="grid-template-columns:1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+            .section-bar {
+                font-size: 0.82rem !important;
+                padding: 8px 12px !important;
+                margin: 10px 0 10px !important;
+                border-radius: 8px !important;
+            }
+            .org-card,
+            .info-card,
+            .activity-row {
+                padding: 10px 12px !important;
+                margin-bottom: 8px !important;
+            }
+            .org-title-bar {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 5px !important;
+                padding: 8px 10px !important;
+            }
+            .year-tag { font-size: 0.68rem !important; }
+            .info-row {
+                flex-direction: column !important;
+                gap: 2px !important;
+                font-size: 0.76rem !important;
+                padding: 6px 0 !important;
+            }
+            .info-label { width: auto !important; }
+            .cv-table {
+                font-size: 0.66rem !important;
+                min-width: 620px;
+            }
+            .cv-table th,
+            .cv-table td {
+                padding: 6px 8px !important;
+                line-height: 1.24 !important;
+            }
+            .info-card:has(.cv-table) {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            .closing-photo,
+            body.fullscreen-active .slide-4 .closing-photo,
+            body.browser-fullscreen .slide-4 .closing-photo {
+                width: 118px !important;
+                height: 118px !important;
+                margin-bottom: 14px !important;
+            }
+            .slide-4 h1 {
+                font-size: clamp(1.55rem, 8vw, 2.2rem) !important;
+                line-height: 1.08 !important;
+            }
+            .slide-4 p { font-size: 0.74rem !important; letter-spacing: 2px !important; }
+            .contact-chip {
+                font-size: 0.72rem !important;
+                padding: 6px 10px !important;
+                border-radius: 14px !important;
+            }
+            .nav-controls {
+                left: 50% !important;
+                bottom: max(10px, env(safe-area-inset-bottom)) !important;
+                transform: translateX(-50%) scale(0.92) !important;
+                padding: 7px 12px !important;
+                gap: 9px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+            .nav-btn { width: 34px !important; height: 34px !important; }
+            .slide-dots { gap: 6px !important; }
+            .mouse-spotlight { display: none !important; }
+        }
+
+        @media (max-width: 420px) {
+            .slide { padding: 8px 8px 82px !important; }
+            .cover-photo-circle { width: 86px !important; height: 86px !important; }
+            .slide-1 .reveal[style*="grid-template-columns:repeat(4,1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            .slide-1 .reveal[style*="grid-template-columns:repeat(4,1fr)"] > div {
+                padding: 6px !important;
+            }
+            .section-bar { font-size: 0.78rem !important; }
+            .cv-table { min-width: 560px; font-size: 0.62rem !important; }
+            .nav-controls { transform: translateX(-50%) scale(0.86) !important; }
+        }
+    </style>
+
 </head>
 <body>
 <div class="mouse-spotlight"></div>
@@ -497,6 +661,12 @@
         if (!slide) return;
         const content = slide.querySelector('.content');
         if (!content) return;
+        if (window.innerWidth <= 768) {
+            slide.classList.remove('fit-applied');
+            slide.style.setProperty('--fit-scale', '1');
+            content.style.transform = 'none';
+            return;
+        }
         slide.classList.remove('fit-applied');
         content.style.setProperty('--fit-scale', '1');
         content.style.transform = 'none';
